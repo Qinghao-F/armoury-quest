@@ -1,5 +1,6 @@
 import { ChevronDown, ChevronUp, FolderOpen, LayoutDashboard, Plus, UsersRound } from 'lucide-react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { assetPaths } from '../../assets/paths';
 import styles from './AppShell.module.css';
 
 export function AppShell() {
@@ -10,7 +11,7 @@ export function AppShell() {
       <aside className={styles.sidebar}>
         <div className={styles.sidebarTop}>
           <div className={styles.brand}>
-            <img src="/assets/armoury-quest-logo.svg" alt="Armoury Quest" />
+            <img src={assetPaths.logo} alt="Armoury Quest" />
           </div>
           <nav className={styles.nav} aria-label="Primary navigation">
             <div className={`${styles.navGroup} ${projectActive ? styles.groupActive : ''}`}>

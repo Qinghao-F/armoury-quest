@@ -22,7 +22,7 @@
 .badgePrimary { color: #725400; background: var(--color-primary-soft); }
 .badgeSuccess { color: #16764c; background: #e4f7eb; }
 .emptyState { display: grid; justify-items: center; gap: 10px; padding: 64px 24px; color: var(--color-text-muted); text-align: center; }
-.emptyState svg { color: var(--color-primary); }
+.emptyState img { width: 30px; height: 30px; }
 .emptyState h2 { margin: 4px 0 0; color: var(--color-ink); font-size: 24px; }
 .emptyState p { max-width: 480px; margin: 0; }
 @media (max-width: 720px) { .page { width: min(100% - 32px, 1260px); padding-top: 30px; } .pageHeader { align-items: flex-start; flex-direction: column; } .description { font-size: 17px; } }

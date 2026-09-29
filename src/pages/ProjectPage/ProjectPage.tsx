@@ -7,6 +7,7 @@ import { demoMaterials } from '../../mocks/fixtures';
 import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import { EmptyState } from '../../components/ui/EmptyState';
+import { assetPaths } from '../../assets/paths';
 import styles from './ProjectPage.module.css';
 
 const actionCards = [
@@ -49,7 +50,7 @@ export function ProjectPage() {
           <div className={styles.materialActions}><Button variant="dark" onClick={() => showFeedback('Upload flow is ready for the backend connection.')}><Upload size={18} /> Upload from computer</Button><button className={styles.moreButton} type="button" aria-label="More material actions"><MoreHorizontal size={22} /></button></div>
         </div>
         <div className={styles.materialList}>
-          {demoMaterials.map((material) => <article className={styles.material} key={material.id}><div className={styles.materialTop}><img src="/assets/pdf-acrobat-icon.svg" alt="PDF" /><MoreHorizontal size={20} /></div><strong>{material.name}</strong><span>{material.size}</span></article>)}
+          {demoMaterials.map((material) => <article className={styles.material} key={material.id}><div className={styles.materialTop}><img src={assetPaths.pdf} alt="PDF" /><MoreHorizontal size={20} /></div><strong>{material.name}</strong><span>{material.size}</span></article>)}
           <button className={styles.addMaterial} type="button" onClick={() => showFeedback('Add material is ready for the backend connection.')}><span><Plus size={28} /></span><strong>Add material</strong></button>
         </div>
       </Card>
