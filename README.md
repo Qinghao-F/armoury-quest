@@ -6,7 +6,7 @@ Interactive React demo for Armoury Quest. It includes the Project Overview, Dash
 
 After GitHub Pages has deployed, open:
 
-`https://qinghao-f.github.io/armoury-quest/#/projects/demo`
+`https://qinghao-f.github.io/armoury-quest/`
 
 ## Run
 
