@@ -1,11 +1,23 @@
 import { ChevronDown, ChevronUp, FolderOpen, LayoutDashboard, Plus, UsersRound } from 'lucide-react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { assetPaths } from '../../assets/paths';
+import { NewProjectModal } from '../../components/project/NewProjectModal';
+import { listDemoProjects, projectsChangedEvent } from '../../mocks/projectStore';
 import styles from './AppShell.module.css';
 
 export function AppShell() {
   const location = useLocation();
+  const navigate = useNavigate();
   const projectActive = location.pathname.startsWith('/projects');
+  const [projects, setProjects] = useState(listDemoProjects);
+  const [newProjectOpen, setNewProjectOpen] = useState(false);
+
+  useEffect(() => {
+    const refreshProjects = () => setProjects(listDemoProjects());
+    window.addEventListener(projectsChangedEvent, refreshProjects);
+    return () => window.removeEventListener(projectsChangedEvent, refreshProjects);
+  }, []);
   return (
     <div className={styles.shell}>
       <aside className={styles.sidebar}>
@@ -21,15 +33,11 @@ export function AppShell() {
                 {projectActive ? <ChevronUp size={17} /> : <ChevronDown size={17} />}
               </div>
               <div className={styles.projectLinks}>
-                <NavLink to="/projects/demo" className={({ isActive }) => `${styles.projectLink} ${isActive ? styles.activeProject : ''}`}>
+                {projects.map((project) => <NavLink key={project.id} to={`/projects/${project.id}`} className={({ isActive }) => `${styles.projectLink} ${isActive ? styles.activeProject : ''}`}>
                   <span className={styles.projectDot} />
-                  <span>Cybersecurity Module</span>
-                </NavLink>
-                <NavLink to="/projects/ux-research" className={styles.projectLink}>
-                  <span className={styles.projectDot} />
-                  <span>UX Research</span>
-                </NavLink>
-                <button className={styles.newProject} type="button"><Plus size={19} /> New project</button>
+                  <span>{project.name}</span>
+                </NavLink>)}
+                <button className={styles.newProject} type="button" onClick={() => setNewProjectOpen(true)}><Plus size={19} /> New project</button>
               </div>
             </div>
             <NavLink to="/dashboard" end className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
@@ -49,6 +57,7 @@ export function AppShell() {
         </div>
       </aside>
       <main className={styles.content}><Outlet /></main>
+      {newProjectOpen && <NewProjectModal onClose={() => setNewProjectOpen(false)} onCreated={(projectId) => { setNewProjectOpen(false); navigate(`/projects/${projectId}`); }} />}
     </div>
   );
 }

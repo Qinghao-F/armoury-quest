@@ -13,7 +13,7 @@ export const router = createHashRouter([
   {
     element: <AppShell />,
     children: [
-      { path: '/', element: <Navigate to="/projects/demo" replace /> },
+      { path: '/', element: <Navigate to="/projects/ux-research" replace /> },
       { path: '/projects/:projectId', element: <ProjectPage /> },
       { path: '/projects/:projectId/ask', element: <PlaceholderPage title="Ask" description="Get clear answers from your study materials." /> },
       { path: '/projects/:projectId/quiz/setup', element: <QuizSetupPage /> },

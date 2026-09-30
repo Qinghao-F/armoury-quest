@@ -1,6 +1,7 @@
 import { dashboardSchema, projectSchema, teamSchema, type DashboardSummary, type Project, type Team } from './contracts';
 import { getJson } from './client';
-import { demoDashboard, demoProject, demoTeams } from '../mocks/fixtures';
+import { demoDashboard, demoTeams } from '../mocks/fixtures';
+import { getProjectById } from '../mocks/projectStore';
 
 const useMocks = import.meta.env.VITE_USE_MOCKS !== 'false';
 
@@ -10,7 +11,11 @@ function delay<T>(value: T, ms = 160) {
 
 export const projectApi = {
   async getProject(projectId: string): Promise<Project> {
-    if (useMocks) return delay(projectSchema.parse({ ...demoProject, id: projectId }));
+    if (useMocks) {
+      const project = getProjectById(projectId);
+      if (!project) throw new Error('Project not found');
+      return delay(projectSchema.parse(project));
+    }
     return projectSchema.parse(await getJson(`/projects/${projectId}`));
   }
 };

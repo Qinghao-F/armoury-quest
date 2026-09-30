@@ -1,20 +1,22 @@
 import { ArrowRight, BarChart3, Check, CheckCircle2, FileText, Plus, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { demoQuestions } from '../../mocks/fixtures';
+import { demoQuestions, demoProject } from '../../mocks/fixtures';
+import { getProjectById } from '../../mocks/projectStore';
 import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import styles from './QuizResultsPage.module.css';
 
 export function QuizResultsPage() {
   const { projectId = 'demo' } = useParams();
+  const project = getProjectById(projectId) ?? demoProject;
   const [selectedId, setSelectedId] = useState(3);
   const [saved, setSaved] = useState(false);
   const questionIndex = demoQuestions.findIndex((question) => question.id === selectedId);
   const question = demoQuestions[questionIndex] ?? demoQuestions[0];
   const nextQuestion = () => setSelectedId(demoQuestions[(questionIndex + 1) % demoQuestions.length].id);
   return <div className="page quizResultsPage">
-    <div className={styles.breadcrumbs}><Link to={`/projects/${projectId}`}>Projects</Link><span>›</span><Link to={`/projects/${projectId}`}>Cybersecurity Module</Link><span>›</span><strong>Quiz results</strong></div>
+    <div className={styles.breadcrumbs}><Link to={`/projects/${projectId}`}>Projects</Link><span>›</span><Link to={`/projects/${projectId}`}>{project.name}</Link><span>›</span><strong>Quiz results</strong></div>
     <header className={styles.resultsHeader}><h1>Review answers &amp; sources</h1><p>Check each answer against your course materials.</p></header>
     <Card className={styles.summaryCard}><span className={styles.summaryIcon}><BarChart3 size={29} /></span><div><strong>Quiz complete <i>•</i> 4 of 5 correct</strong><p>You’re on the right track! Review the questions below to build on your understanding.</p></div><span className={styles.confidence}>Before quiz: <strong>60% confident</strong></span></Card>
     <div className={styles.resultsGrid}>

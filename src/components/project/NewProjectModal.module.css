@@ -1,0 +1,23 @@
+.backdrop { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 24px; background: rgba(16, 23, 27, .46); backdrop-filter: blur(4px); }
+.modal { position: relative; width: min(100%, 560px); padding: 32px; border: 1px solid rgba(255,255,255,.7); border-radius: 24px; background: var(--color-surface); box-shadow: 0 24px 70px rgba(16, 23, 27, .22); }
+.close { position: absolute; top: 20px; right: 20px; display: grid; place-items: center; width: 36px; height: 36px; color: var(--color-text-muted); border: 0; border-radius: 50%; background: transparent; }
+.close:hover { color: var(--color-ink); background: var(--color-canvas); }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--color-primary-strong); font-size: 14px; font-weight: 800; }
+.modal h2 { margin: 15px 0 8px; color: var(--color-ink); font-size: 30px; letter-spacing: -.045em; }
+.intro { margin: 0 0 24px; color: var(--color-text-muted); line-height: 1.5; }
+.field { display: grid; gap: 8px; margin-bottom: 18px; color: var(--color-ink); font-size: 14px; font-weight: 700; }
+.field input { min-height: 48px; padding: 0 14px; color: var(--color-ink); border: 1px solid var(--color-border-strong); border-radius: 12px; outline: none; background: #fff; }
+.field input:focus { border-color: var(--color-primary-strong); box-shadow: 0 0 0 3px rgba(255, 208, 71, .28); }
+.fileBlock { display: grid; grid-template-columns: 48px 1fr 24px; align-items: center; gap: 12px; padding: 15px; border: 1px solid var(--color-border); border-radius: 15px; background: #fffdf6; }
+.fileIcon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 12px; background: #ffe2e1; }
+.fileIcon img { width: 28px; height: 28px; }
+.fileCopy { min-width: 0; }
+.fileCopy strong, .fileCopy small { display: block; }
+.fileCopy strong { overflow: hidden; color: var(--color-ink); font-size: 13px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+.fileCopy small { margin-top: 5px; color: var(--color-text-muted); font-size: 12px; }
+.fileCheck { color: #1e9c62; }
+.note { display: flex; align-items: flex-start; gap: 8px; margin: 14px 0 0; color: var(--color-text-muted); font-size: 12px; line-height: 1.45; }
+.actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 28px; }
+.spinner { animation: spin .9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 560px) { .modal { padding: 25px 20px; } .fileCopy strong { white-space: normal; } .actions { flex-direction: column-reverse; } .actions > * { width: 100%; } }

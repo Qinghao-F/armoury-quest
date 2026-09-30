@@ -1,18 +1,42 @@
-import type { DashboardSummary, Project, Team } from '../api/contracts';
+import type { DashboardSummary, Material, Project, Team } from '../api/contracts';
 
-export const demoProject: Project = {
-  id: 'demo',
-  name: 'Cybersecurity Module',
-  description: 'Learn and apply what is in your materials.',
-  materialCount: 3,
-  progress: 68
-};
-
-export const demoMaterials = [
+export const uxResearchMaterials: Material[] = [
   { id: 'module-1', name: 'Module 1.pdf', size: '4.2 MB', topic: 'Introduction to threats' },
   { id: 'module-2', name: 'Module 2.pdf', size: '2.4 MB', topic: 'Phishing and social engineering' },
   { id: 'workshop-notes', name: 'Workshop Notes.pdf', size: '5.8 MB', topic: 'Practice examples' }
 ];
+
+export const cyberSecurityMaterials: Material[] = [
+  { id: 'untapped-module-2', name: 'Untapped Sample Content Genius Armoury Module 2 Hackathon.pdf', size: '4.0 MB', topic: 'Threats and exploits · 31 pages' }
+];
+
+export const uxResearchProject: Project = {
+  id: 'ux-research',
+  name: 'UX Research',
+  description: 'Learn and apply what is in your materials.',
+  materialCount: uxResearchMaterials.length,
+  progress: 68,
+  completedActivities: 4,
+  totalActivities: 6,
+  totalSize: '12.4 MB',
+  materials: uxResearchMaterials
+};
+
+export const cyberSecurityProject: Project = {
+  id: 'cybersecurity-module',
+  name: 'Cybersecurity Module',
+  description: 'Learn and apply what is in your materials.',
+  materialCount: cyberSecurityMaterials.length,
+  progress: 0,
+  completedActivities: 0,
+  totalActivities: 6,
+  totalSize: '4.0 MB',
+  materials: cyberSecurityMaterials
+};
+
+// Legacy names remain available to the existing dashboard and quiz fixtures.
+export const demoProject = uxResearchProject;
+export const demoMaterials = uxResearchMaterials;
 
 export const demoDashboard: DashboardSummary = {
   learnerName: 'Amanda Chen',
